@@ -9,7 +9,7 @@
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+              <h2 class="text-uppercase text-center mb-5">Login</h2>
               {% if form.errors %}
               <div class="alert alert-danger">
                 <strong>{{form.errors}}</strong>
@@ -19,33 +19,20 @@
               <form method="POST">
                 {% csrf_token %}
                 <div class="form-outline  d-flex justify-content-center ">
-                <label class="form-label" for="form3Example2cg">{{form.username}}</label>
+                    <input required name="username" type="text" id="form3Example3cg" class="form-control form-control-lg" placeholder="Kullanıcı Adı"/>
                 </div>
 
                 <div class="form-outline mt-2 d-flex justify-content-center">
                   
-                  <label class="form-label" for="form3Example3cg">{{form.email}}</label>
-                </div>
-
-                <div class="form-outline mt-2 d-flex justify-content-center">
-                  
-                  <label class="form-label" for="form3Example4cg">{{form.password1}}</label>
-                </div>
-
-                <div class="form-outline mt-2 d-flex justify-content-center">
-                  
-                  <label class="form-label" for="form3Example4cdg">{{form.password2}}</label>
+                    <input name="password" type="password" id="form3Example4cg" class="form-control form-control-lg" placeholder="Şifre"/>
                 </div>
 
                 
 
                 <div class="d-flex justify-content-center">
                   <button type="submit"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body mt-2">Login</button>
                 </div>
-
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="{% url 'user:sign-in' %}"
-                    class="fw-bold text-body"><u>Login here</u></a></p>
 
               </form>
 

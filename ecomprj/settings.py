@@ -135,3 +135,6 @@ JAZZMIN_SETTINGS ={
     'site_header' : "FRUTIKA SHOP",
     'site_brand' : "FRUTIKA SHOP"
 }
+
+
+

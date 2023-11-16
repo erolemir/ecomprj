@@ -14,6 +14,7 @@
 	<link rel="shortcut icon" type="image/png" href="{% static 'assets/img/favicon.png' %}">
 	<!-- google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
@@ -89,8 +90,15 @@
 								</li>
 								<li>
 									<div class="header-icons">
-										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+										{% if user.id is not None %}
+										<li class="scroll-to-section"> <strong><a href="/user/">{{user.username}}<i class="fa-solid fa-user"></i></a></strong></p></li>
+										<a class="ml-2" href="{% url 'user:logout' %}" style="font-size:18px"><i class="fa-solid fa-right-from-bracket"></i></a>
+										<a class="shopping-cart ml-2" href="cart.html" style="font-size:18px"><i class="fas fa-shopping-cart"></i></a>
+										{% else %}
+										<a class="" href="{% url 'user:sign-in' %}">Login<i class="fa-solid fa-user"></i></a>
+										<a class="" href="{% url 'user:sign-up' %}">Register<i class="fa-regular fa-user"></i></a>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										{% endif %}
 									</div>
 								</li>
 							</ul>
@@ -101,6 +109,18 @@
 					</div>
 				</div>
 			</div>
+			{% if messages  %}
+				{% for message in messages  %}
+					<div class="alert alert-{{ message.tags }}">
+						{{ message }}
+					</div>
+				{% endfor %}
+			{% endif %}
+			<script>
+				setTimeout(function(){
+					$('.alert').fadeOut('close');
+				}, 3000);
+			</script>
 		</div>
 	</div>
 	<!-- end header -->
