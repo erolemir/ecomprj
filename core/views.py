@@ -1,7 +1,7 @@
 from django.shortcuts import render,HttpResponse
 from core.models import Category,CartOrderItems,Address,CartOrder,Wishlist,Vendor,Product,ProductImages,ProductReview
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
 
 def index(request):
     toprak = Category.objects.get(title="Toprakta Yetişen")
@@ -17,4 +17,12 @@ def shop(request):
         "products":products,
     }
     return render(request, 'core/shop.html',context)
+
+def vendor_list_view(request):
+    vendors= Vendor.objects.all()
+    context ={
+        "vendors":vendors,
+    }
+    return render(request,"core/vendor-list.html",context)
+
 

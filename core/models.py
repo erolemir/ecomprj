@@ -45,7 +45,7 @@ class Vendor(models.Model):
     image = models.ImageField(upload_to=user_directory_path,default="urun.jpg")
     description = models.TextField(null=True,blank=True,default="Satıcı")
     user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
-    
+    date = models.DateTimeField(auto_now_add=True )
     address= models.CharField(max_length=100,default="Istanbul")
     contact = models.CharField(max_length=100,default="555 555 55 55")
     chat_resp_time = models.CharField(max_length=100,default="100")
@@ -71,6 +71,7 @@ class Product(models.Model):
     
     category = models.ForeignKey(Category,on_delete=models.CASCADE) # Category tablosuyla ilişki kurulması
     user = models.ForeignKey(User, on_delete=models.SET_NULL,null=True)
+    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL,null=True,related_name="vendor")
     
     title = models.CharField(max_length=100,default="Taze Meyve")
     image = models.ImageField(upload_to=user_directory_path,default="urun.jpg")

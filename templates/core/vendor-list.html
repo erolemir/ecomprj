@@ -1,0 +1,46 @@
+{% extends "partials/base.html" %}
+{% load static %}	
+{% block content %}
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <h1>Satıcılar</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- products -->
+<div class="product-section mt-150 mb-150">
+    <div class="container">
+      <div class="row product-lists">
+        {% for v in vendors %}
+          <div class="col-lg-4 col-md-6 text-center" >
+            <div class="single-product-item" >
+                <div class="product-image">
+                    <a href="single-product.html"><img src="{{ v.image.url }}" alt="" ></a>
+                </div>
+                
+              <h3>{{ v.title }}</h3>
+              <p class="product-price">
+                <span style="font-size: 13px">{{ v.vendor.all.count }} Ürün</span>
+                <span style="font-size: 18px">{{ v.date.date }}</span>{{v.address}}
+              </p>
+
+    <!-- Handle the case where vendor.id is empty or not available -->
+   
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- end products -->
+  
+  
+{% endblock content %}
