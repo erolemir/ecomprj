@@ -1,0 +1,44 @@
+{% extends "partials/base.html" %}
+{% load static %}	
+{% block content %}
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>Taze ve Doğal</p>
+          <h1>Mağaza</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- products -->
+<div class="product-section mt-150 mb-150">
+  <div class="container">
+
+    <div class="row">
+      
+        </div>
+
+    <div class="row product-lists">
+      {% for p in products %}
+      <div class="col-lg-4 col-md-6 text-center">
+        <div class="single-product-item">
+          <div class="product-image">
+            <a href="single-product.html"><img src="{{p.image.url}}" alt=""></a>
+          </div>
+          <h3>{{p.title}}</h3>
+          <p class="product-price"><span style=font-size:13px>{{p.user.username}} İsimli Satıcının Mağazasından</span><span style=font-size:18px><del>{{p.old_price}}₺</del></span> {{p.price}}₺ /kg </p>
+          <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- end products -->
+{% endblock content %}

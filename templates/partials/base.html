@@ -1,13 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+	<meta name="description" content="Duyarlı Bootstrap4 Mağaza Şablonu, Imran Hossain tarafından https://imransdesign.com/ adresinden oluşturuldu">
 
-	<!-- title -->
+	<!-- başlık -->
 	<title>Fruitkha</title>
 
 	<!-- favicon -->
@@ -28,9 +28,9 @@
 	<link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
 	<!-- mean menu css -->
 	<link rel="stylesheet" href="{% static 'assets/css/meanmenu.min.css' %}">
-	<!-- main style -->
+	<!-- ana stil -->
 	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
-	<!-- responsive -->
+	<!-- duyarlı -->
 	<link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
 
 </head>
@@ -38,7 +38,7 @@
 	
 
 	
-	<!-- header -->
+	<!-- başlık -->
 	<div class="top-header-area" id="sticker">
 		<div class="container">
 			<div class="row">
@@ -52,37 +52,26 @@
 						</div>
 						<!-- logo -->
 
-						<!-- menu start -->
+						<!-- menü başlangıcı -->
 						<nav class="main-menu">
 							<ul>
-								<li class="current-list-item"><a href="{% url 'core:index' %}">Home</a>
+								<li class="current-list-item"><a href="{% url 'core:index' %}">Ana Sayfa</a>
 									
 								</li>
-								<li><a href="about.html">About</a></li>
-								<li><a href="news.html">News</a>
-									<ul class="sub-menu">
-										<li><a href="news.html">News</a></li>
-										<li><a href="single-news.html">Single News</a></li>
-									</ul>
-								</li>
-								<li><a href="contact.html">Contact</a></li>
-								<li><a href="shop.html">Shop</a>
-									<ul class="sub-menu">
-										<li><a href="shop.html">Shop</a></li>
-										<li><a href="checkout.html">Check Out</a></li>
-										<li><a href="single-product.html">Single Product</a></li>
-										<li><a href="cart.html">Cart</a></li>
-									</ul>
+								<li><a href="about.html">Hakkımızda</a></li>
+								<li><a href="contact.html">İletişim</a></li>
+								<li><a href="{% url 'core:shop' %}">Mağaza</a>
 								</li>
 								<li>
 									<div class="header-icons">
 										{% if user.id is not None %}
-										<li class="scroll-to-section"> <strong><a href="/user/">{{user.username}}<i class="fa-solid fa-user"></i></a></strong></p></li>
+										<li class="scroll-to-section"> <strong><a href="/user/">{{user.username}}<i class="fa-solid fa-user" ></i></a></strong></p></li>
 										<a class="ml-2" href="{% url 'user:logout' %}" style="font-size:18px"><i class="fa-solid fa-right-from-bracket"></i></a>
 										<a class="shopping-cart ml-2" href="cart.html" style="font-size:18px"><i class="fas fa-shopping-cart"></i></a>
+										<a class="mobile-hide search-bar-icon ml-2" href="#" style="font-size:18px"><i class="fas fa-search"></i></a>
 										{% else %}
-										<a class="" href="{% url 'user:sign-in' %}">Login<i class="fa-solid fa-user"></i></a>
-										<a class="" href="{% url 'user:sign-up' %}">Register<i class="fa-regular fa-user"></i></a>
+										<a class="" href="{% url 'user:sign-in' %}">Giriş Yap<i class="fa-solid fa-user"></i></a>
+										<a class="" href="{% url 'user:sign-up' %}">Kayıt Ol<i class="fa-regular fa-user"></i></a>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 										{% endif %}
 									</div>
@@ -91,7 +80,7 @@
 						</nav>
 						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 						<div class="mobile-menu"></div>
-						<!-- menu end -->
+						<!-- menü sonu -->
 					</div>
 				</div>
 			</div>
@@ -109,9 +98,8 @@
 			</script>
 		</div>
 	</div>
-	<!-- end header -->
-	
-	<!-- search area -->
+	<!-- başlık sonu -->
+	<!-- arama alanı -->
 	<div class="search-area">
 		<div class="container">
 			<div class="row">
@@ -119,21 +107,21 @@
 					<span class="close-btn"><i class="fas fa-window-close"></i></span>
 					<div class="search-bar">
 						<div class="search-bar-tablecell">
-							<h3>Search For:</h3>
-							<input type="text" placeholder="Keywords">
-							<button type="submit">Search <i class="fas fa-search"></i></button>
+							<h3>Ara:</h3>
+							<input type="text" placeholder="Anahtar Kelimeler">
+							<button type="submit">Ara <i class="fas fa-search"></i></button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- end search area -->
+	<!-- arama alanı sonu -->
     {% block content %}
     
     {% endblock content %}
 
-<!-- logo carousel -->
+<!-- logo karuseli -->
 <div class="logo-carousel-section">
     <div class="container">
         <div class="row">
@@ -159,7 +147,7 @@
         </div>
     </div>
 </div>
-<!-- end logo carousel -->
+<!-- logo karuseli sonu -->
 
 <!-- footer -->
 <div class="footer-area">
@@ -167,15 +155,15 @@
         <div class="row">
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box about-widget">
-                    <h2 class="widget-title">About us</h2>
+                    <h2 class="widget-title">Hakkımızda</h2>
                     <p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box get-in-touch">
-                    <h2 class="widget-title">Get in Touch</h2>
+                    <h2 class="widget-title">İletişim</h2>
                     <ul>
-                        <li>34/8, East Hukupara, Gifirtok, Sadan.</li>
+                        <li>34/8, Doğu Hukupara, Gifirtok, Sadan.</li>
                         <li>support@fruitkha.com</li>
                         <li>+00 111 222 3333</li>
                     </ul>
@@ -183,22 +171,22 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box pages">
-                    <h2 class="widget-title">Pages</h2>
+                    <h2 class="widget-title">Sayfalar</h2>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="services.html">Shop</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html">Ana Sayfa</a></li>
+                        <li><a href="about.html">Hakkımızda</a></li>
+                        <li><a href="services.html">Mağaza</a></li>
+                        <li><a href="news.html">Haberler</a></li>
+                        <li><a href="contact.html">İletişim</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box subscribe">
-                    <h2 class="widget-title">Subscribe</h2>
-                    <p>Subscribe to our mailing list to get the latest updates.</p>
+                    <h2 class="widget-title">Abone Ol</h2>
+                    <p>En son güncellemeleri almak için bültenimize abone olun.</p>
                     <form action="index.html">
-                        <input type="email" placeholder="Email">
+                        <input type="email" placeholder="E-posta">
                         <button type="submit"><i class="fas fa-paper-plane"></i></button>
                     </form>
                 </div>
@@ -206,14 +194,14 @@
         </div>
     </div>
 </div>
-<!-- end footer -->
+<!-- footer sonu -->
 
-<!-- copyright -->
+<!-- telif hakkı -->
 <div class="copyright">
     <div class="container">
-        <div class="row">
+        <div class"row">
             <div class="col-lg-6 col-md-12">
-                <p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.</p>
+                <p>Telif Hakkı &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  Tüm Hakları Saklıdır.</p>
             </div>
             <div class="col-lg-6 text-right col-md-12">
                 <div class="social-icons">
@@ -229,13 +217,13 @@
         </div>
     </div>
 </div>
-<!-- end copyright -->
+<!-- telif hakkı sonu -->
 
 <!-- jquery -->
 <script src="{% static 'assets/js/jquery-1.11.3.min.js' %}"></script>
 <!-- bootstrap -->
 <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
-<!-- count down -->
+<!-- geri sayım -->
 <script src="{% static 'assets/js/jquery.countdown.js' %}"></script>
 <!-- isotope -->
 <script src="{% static 'assets/js/jquery.isotope-3.0.6.min.js' %}"></script>
@@ -247,9 +235,9 @@
 <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
 <!-- mean menu -->
 <script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
-<!-- sticker js -->
+<!-- yapışkan js -->
 <script src="{% static 'assets/js/sticker.js' %}"></script>
-<!-- main js -->
+<!-- ana js -->
 <script src="{% static 'assets/js/main.js' %}"></script>
 
 </body>
