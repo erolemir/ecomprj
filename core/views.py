@@ -25,4 +25,17 @@ def vendor_list_view(request):
     }
     return render(request,"core/vendor-list.html",context)
 
+def urun_detay(request,id):
+    product = Product.objects.get(pk=id)
+    p_image = product.p_images.all()
+    context = {"product":product,
+               "p_image":p_image,
+    }
+    return render(request, "core/urun_detay.html",context)
 
+
+def vendor_detial_view(request,id):
+    vendor = Vendor.objects.get(pk=id)
+    context = {"vendor":vendor,
+    }
+    return render(request, "core/vendor_detial.html",context)

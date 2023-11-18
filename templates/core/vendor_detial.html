@@ -1,0 +1,45 @@
+{% extends "partials/base.html" %}
+{% load static %}	
+{% block content %}	
+    
+    <!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<h1>Ürün Sayfası</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+	<!-- single product -->
+	<div class="single-product mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="single-product-img">
+                        <img src="{{vendor.image.url}}" alt="">
+					</div>     
+				</div>
+				<div class="col-md-7">
+					<div class="single-product-content">
+						<h3>{{vendor.title}}</h3>
+						<p class="single-product-pricing"><span>Üye Türü: {{vendor.description}}</span>  </p>
+						<p class="single-product-pricing"><span>Katılma Tarihi: {{vendor.date}}</span>  </p>
+						<p class="single-product-pricing"><span>İşletme Adresi: {{vendor.address}}</span>  </p>
+						<p class="single-product-pricing"><span>İletişim: {{vendor.contact}}</span>  </p>
+						<p class="single-product-pricing"><span>Derecesi: {{vendor.authentic_rating}}/100</span>  </p>
+						
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+	<!-- end single product -->
+{% endblock content%}

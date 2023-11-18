@@ -1,0 +1,72 @@
+{% extends "partials/base.html" %}
+{% load static %}	
+{% block content %}	
+    
+    <!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<h1>Ürün Sayfası</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+	<!-- single product -->
+	<div class="single-product mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="single-product-img">
+                        <img src="{{product.image.url}}" alt="">
+					</div>
+                    <div class="row">
+                    {% for p in p_image %}
+                        <div class="single-product-img enlarge-image" style="width:120px; height:120px; margin-top:5%; margin-left:15px;">
+                            <img src="{{p.images.url}}" alt="">
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    
+				</div>
+				<div class="col-md-7">
+					<div class="single-product-content">
+						<h3>{{product.title}}</h3>
+						<p class="single-product-pricing"><span>KG</span> {{product.price}}₺</p>
+						<p>{{product.description}}</p>
+						<div class="single-product-form">
+							<form action="index.html">
+								<input type="number" placeholder="0"> <span>KG</span>
+							</form>
+							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Sepete Ekle</a>
+						</div>
+						<h4>Paylaş:</h4>
+						<ul class="product-share">
+                            <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href=""><i class="fab fa-twitter"></i></a></li>
+							<li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
+							<li><a href=""><i class="fab fa-linkedin"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <style>
+        .enlarge-image {
+            transition: transform 0.2s; /* Add a smooth transition effect */
+        }
+    
+        .enlarge-image:hover {
+            transform: scale(1.8); /* Enlarge the image to 120% when hovered */
+            cursor: pointer;
+             /* Change the cursor to indicate interactivity */
+        }
+    </style>
+    
+	<!-- end single product -->
+{% endblock content%}
