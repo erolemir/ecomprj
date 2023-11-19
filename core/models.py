@@ -16,14 +16,13 @@ STATUS= (
     ('published', 'Yayınlandı'),
 )
     
-RATING= (
-    ('1', '★☆☆☆☆'),
-    ('2', '★★☆☆☆'),
-    ('3', '★★★☆☆'),
-    ('4', '★★★★☆'),
-    ('5', '★★★★★'),
+RATING = (
+    (1, '1'),
+    (2, '2'),
+    (3, '3'),  
+    (4, '4'),
+    (5, '5'),
 )
-    
     
 def user_directory_path(instance, filename):
     return 'user{0}/{1}'.format(instance.user.id,filename)
@@ -149,9 +148,9 @@ class CartOrderItems(models.Model):
 
 class ProductReview(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE,null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,null=True,related_name="reviews")
     review = models.TextField()
-    rating = models.IntegerField(choices=RATING,default=None)
+    rating = models.IntegerField(choices=RATING)
     date = models.DateField(auto_now_add=True)
     class Meta:
         verbose_name_plural = "Product Reviews"
