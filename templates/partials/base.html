@@ -16,6 +16,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+
 	<!-- fontawesome -->
 	<link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
 	<!-- bootstrap -->
@@ -101,22 +102,46 @@
 	</div>
 	<!-- başlık sonu -->
 	<!-- arama alanı -->
-	<div class="search-area">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<span class="close-btn"><i class="fas fa-window-close"></i></span>
-					<div class="search-bar">
-						<div class="search-bar-tablecell">
-							<h3>Ara:</h3>
-							<input type="text" placeholder="Anahtar Kelimeler">
-							<button type="submit">Ara <i class="fas fa-search"></i></button>
+	<form action="{% url 'core:search' %}" method="GET">
+		{% csrf_token %}
+		<div class="search-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<span class="close-btn"><i class="fas fa-window-close"></i></span>
+						<div class="search-bar">
+							<div class="search-bar-tablecell">
+								
+									
+								<h3>Ara:</h3>
+								<input type="text" id="query" placeholder="Anahtar Kelimeler" name="q">
+								<button type="submit">Ara <i class="fas fa-search"></i></button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+		{% comment %} <script>
+			$(function() {
+				$("#query").autocomplete({
+					source: "/search_auto/",
+					select: function (event, ui) {
+						AutoCompleteSelectHandler(event, ui);
+					},
+					minLength: 1,
+				});
+			});
+		
+			function AutoCompleteSelectHandler(event, ui) {
+				var selectedObj = ui.item;
+			}
+		</script> {% endcomment %}
+		
+</form>
+
+
+
 	<!-- arama alanı sonu -->
     {% block content %}
     

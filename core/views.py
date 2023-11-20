@@ -1,5 +1,8 @@
 from audioop import avg
+import json
+from django.http import JsonResponse
 from django.shortcuts import render,HttpResponse
+from django.views import View
 from core.models import Category,CartOrderItems,Address,CartOrder,Wishlist,Vendor,Product,ProductImages,ProductReview
 from django.contrib.auth.decorators import login_required
 from django.db.models import Count,Avg
@@ -74,3 +77,27 @@ def addcomment(request,id):
             return HttpResponseRedirect(url)
     messages.warning(request,"Yorumunuz Gönderilememiştir. Lütfen Kontrol Ediniz.")
     return HttpResponseRedirect(url)
+
+
+def search(request):
+    query = request.GET.get("q")
+    
+    products = Product.objects.filter(title__icontains=query)
+    
+    context = {
+        "products":products,
+        "query":query,
+        
+    }
+    return render(request,"core/search.html",context)
+
+def product_search_auto(request):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        q = request.GET.get('term', '')
+        products = Product.objects.filter(title__icontains=q)
+        results = [product.title for product in products]
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)
