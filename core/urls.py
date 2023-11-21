@@ -1,5 +1,5 @@
 from django.urls import path
-from core.views import index,shop,vendor_list_view,urun_detay,vendor_detial_view,addcomment,search,product_search_auto
+from core.views import index,shop,vendor_list_view,urun_detay,vendor_detial_view,addcomment,search,product_search_auto,add_to_cart
 
 
 
@@ -14,6 +14,7 @@ urlpatterns = [
     path("products/addcomment/<int:id>", addcomment, name="yorum_ekle"),
     path("search/", search, name="search"),
     path('search_auto/', product_search_auto, name='product_search_auto'),
+    path('add-to-cart/', add_to_cart, name='add-to-cart'),
 
 ]
 
