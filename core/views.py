@@ -1,7 +1,7 @@
 from audioop import avg
 import json
 from django.http import JsonResponse
-from django.shortcuts import render,HttpResponse
+from django.shortcuts import redirect, render,HttpResponse
 from django.views import View
 from core.models import Category,CartOrderItems,Address,CartOrder,Wishlist,Vendor,Product,ProductImages,ProductReview
 from django.contrib.auth.decorators import login_required
@@ -9,6 +9,7 @@ from django.db.models import Count,Avg
 from core.forms import ProductReviewForm
 from django.contrib import messages
 from django.shortcuts import render,HttpResponse,HttpResponseRedirect
+from django.template.loader import render_to_string
 
 def index(request):
     toprak = Category.objects.get(title="Toprakta Yetişen")
@@ -114,7 +115,7 @@ def add_to_cart(request):
     if 'cart_data_obj' in request.session:
         if str(request.GET['id']) in request.session['cart_data_obj']:
             cart_data = request.session['cart_data_obj']
-            cart_data[str(request.GET['id'])]['gty']= int(cart_product[str(request.GET['id'])]['qty'])
+            cart_data[str(request.GET['id'])]['qty']= int(cart_product[str(request.GET['id'])]['qty'])
             cart_data.update(cart_data)
             request.session['cart_data_obj'] = cart_data
         else :
@@ -124,3 +125,33 @@ def add_to_cart(request):
     else :
         request.session['cart_data_obj'] = cart_product
     return JsonResponse({"data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj'])})
+
+
+def cart_view(request):
+
+    cart_total_amount = 0
+    if 'cart_data_obj' in request.session:
+        for product_id,item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'])
+            
+        return render(request,"core/cart.html",{"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount})
+    else:
+        messages.warning(request,"Sepetiniz Boş")
+        return redirect("core:index")
+    
+def delete_item_from_cart(request):
+    product_id = str(request.GET['id'])
+    if 'cart_data_obj' in request.session:
+        if product_id in request.session['cart_data_obj']:
+            cart_data = request.session['cart_data_obj']
+            del request.session['cart_data_obj'][product_id]
+            request.session['cart_data_obj'] = cart_data
+        
+        
+    cart_total_amount = 0
+    if 'cart_data_obj' in request.session:
+        for product_id,item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'])
+            
+    context = render_to_string("core/async/cart-list.html",{"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount,'product_id':product_id})
+    return JsonResponse({"data":context,'totalcartitems': len(request.session['cart_data_obj'])})

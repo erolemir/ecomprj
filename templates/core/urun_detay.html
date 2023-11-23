@@ -36,15 +36,15 @@
 				<div class="col-md-7">
 					<div class="single-product-content">
 						<h3>{{product.title}}</h3>
-						<p  class="single-product-pricing current-product-price-{{product.id}}"><span>KG</span> {{product.price}}₺</p>
+						<p  class="single-product-pricing current-product-price-{{product.id}}"><span>KG</span> {{product.price}}</p>
 						<p>{{product.description}}</p>
 						<div class="single-product-form">
 
 								
-							<input type="number" value="1" id="product-quantity"> <span>KG</span> <br>
+							<input type="number" value="1" id="product-quantity" class="product-quantity-{{product.id}}"> <span>KG</span> <br>
 							{% comment %} <input type="hidden" value="{{product.id}}" class="product-id">
 							<input type="hidden" value="{{product.title}}" class="product-title"> {% endcomment %}
-							<input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.id}}">
+							{% comment %} <input type="hidden" value="1" id="product-quantity" class="product-quantity-{{product.id}}"> {% endcomment %}
 							<input type="hidden" class="product-image-{{product.id}}" value="{{product.image.url}}">
 							<input type="hidden" class="product-id-{{product.id}}" value="{{product.id}}">
 							<input type="hidden" class="product-title-{{product.id}}" value="{{product.title}}">

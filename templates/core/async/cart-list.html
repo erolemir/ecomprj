@@ -1,0 +1,75 @@
+
+
+<!-- cart -->
+<div class="cart-section mt-150 mb-150" id="cart-list">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-12">
+        <div class="cart-table-wrap">
+          <table class="cart-table">
+            <thead class="cart-table-head">
+              <tr class="table-head-row">
+                <th class="product-remove"></th>
+                <th class="product-image">Ürün Resmi</th>
+                <th class="product-name">İsim</th>
+                <th class="product-price">Fiyat</th>
+                <th class="product-quantity">Miktar</th>
+                <th class="product-total">Toplam</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for product_id, item in cart_data.items %}
+              <tr class="table-body-row">
+                <td class="product-remove"><button href="#" class="delete-product" data-product="{{product_id}}"><i class="far fa-window-close"></i></button></td>
+                <td class="product-image"><img src="{{item.image}}" alt=""></td>
+                <td class="product-name">{{item.title}}</td>
+                <td class="product-price">{{item.price|floatformat:2}} TL</td>
+                <td class="product-quantity"><input type="number" value="{{ item.qty }}" placeholder="Kg"></td>
+                <td class="product-total">{% widthratio item.price 1  item.qty%} TL</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="total-section">
+          <table class="total-table">
+            <thead class="total-table-head">
+              <tr class="table-total-row">
+                <th>Toplam</th>
+                <th>Fiyat</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="total-data">
+                <td><strong>Toplam: </strong></td>
+                <td>{{cart_total_amount}} TL</td>
+              </tr>
+              <tr class="total-data">
+                <td><strong>Kargo: </strong></td>
+                <td>Ücretsiz</td>
+              </tr>
+              <tr class="total-data">
+                <td><strong>Toplam: </strong></td>
+                <td>{{cart_total_amount}} TL</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="cart-buttons">
+            <button href="cart.html" class="btn btn-warning ">Sepeti Güncelle</button>
+            {% if totalcartitems %}
+            <button href="checkout.html" class=" btn btn-warning">Ödeme Yap</button>
+            {% endif %}
+          </div>
+        </div>
+
+       
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end cart -->
+
+ 
