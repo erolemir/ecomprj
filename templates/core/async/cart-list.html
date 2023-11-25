@@ -13,8 +13,9 @@
                 <th class="product-image">Ürün Resmi</th>
                 <th class="product-name">İsim</th>
                 <th class="product-price">Fiyat</th>
-                <th class="product-quantity">Miktar</th>
+                <th class="product-quantity">KG</th>
                 <th class="product-total">Toplam</th>
+                <th class="product-total">Güncelle</th>
               </tr>
             </thead>
             <tbody>
@@ -24,8 +25,9 @@
                 <td class="product-image"><img src="{{item.image}}" alt=""></td>
                 <td class="product-name">{{item.title}}</td>
                 <td class="product-price">{{item.price|floatformat:2}} TL</td>
-                <td class="product-quantity"><input type="number" value="{{ item.qty }}" placeholder="Kg"></td>
+                <td class="product-quantity"><input type="number" value="{{ item.qty }}" placeholder="Kg" class="product-qty-{{ product_id }}"></td>
                 <td class="product-total">{% widthratio item.price 1  item.qty%} TL</td>
+                <td class="product-total"> <button href="#" class="update-product btn btn-white" data-product="{{product_id}}"><i class="fa-solid fa-arrows-rotate"></i></button></td>
               </tr>
               {% endfor %}
             </tbody>
@@ -58,9 +60,8 @@
             </tbody>
           </table>
           <div class="cart-buttons">
-            <button href="cart.html" class="btn btn-warning ">Sepeti Güncelle</button>
             {% if totalcartitems %}
-            <button href="checkout.html" class=" btn btn-warning">Ödeme Yap</button>
+            <a href="{% url 'core:checkout' %}" class=" boxed-btn">Ödeme Yap</a>
             {% endif %}
           </div>
         </div>

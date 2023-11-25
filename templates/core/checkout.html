@@ -1,0 +1,184 @@
+{% extends "partials/base.html" %}
+{% load static %}	
+{% block content %}
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <p>Taze ve Organik</p>
+                    <h1>Ürünü Kontrol Et</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- check out section -->
+<div class="checkout-section mt-150 mb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="checkout-accordion-wrap">
+                    <div class="accordion" id="accordionExample">
+                      <div class="card single-accordion">
+                        <div class="card-header" id="headingOne">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              Fatura Adresi
+                            </button>
+                          </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                          <div class="card-body">
+                            <div class="billing-address-form">
+                                <form action="index.html">
+                                    <p><input type="text" placeholder="Ad"></p>
+                                    <p><input type="email" placeholder="E-posta"></p>
+                                    <p><input type="text" placeholder="Adres"></p>
+                                    <p><input type="tel" placeholder="Telefon"></p>
+                                    <p><textarea name="bill" id="bill" cols="30" rows="10" placeholder="Bir şeyler söyle"></textarea></p>
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card single-accordion">
+                        <div class="card-header" id="headingThree">
+                          <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              Kart Bilgileri
+                            </button>
+                          </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                          <div class="card-body">
+                            <div class="card-details">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="checkoutForm3" checked />
+                                    <label class="form-check-label" for="checkoutForm3">
+                                        Kredi Kartı
+                                    </label>
+                                </div>
+                            
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="checkoutForm4" />
+                                    <label class="form-check-label" for="checkoutForm4">
+                                        Banka Kartı
+                                    </label>
+                                </div>
+                            
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="checkoutForm5" />
+                                    <label class="form-check-label" for="checkoutForm5">
+                                        Paypal
+                                    </label>
+                                </div>
+                            
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input type="text" id="formNameOnCard" class="form-control" />
+                                            <label class="form-label" for="formNameOnCard">Kart Üzerindeki İsim</label>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <input type="text" id="formCardNumber" class="form-control" />
+                                            <label class="form-label" for="formCardNumber">Kredi Kartı Numarası</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                                <div class="row mb-4">
+                                    <div class="col-3">
+                                        <div class="form-outline">
+                                            <input type="text" id="formExpiration" class="form-control" />
+                                            <label class="form-label" for="formExpiration">Son Kullanma Tarihi</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-outline">
+                                            <input type="text" id="formCVV" class="form-control" />
+                                            <label class="form-label" for="formCVV">CVV</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+
+                            
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="order-details-wrap">
+                    <table class="order-details table">
+                        <thead>
+                            <tr >
+                                <th>Sipariş Detaylarınız</th>
+                                <th>KG</th>
+                                <th>Fiyat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="order-details-body">
+                            {% for product_id, item in cart_data.items %}
+                            <tr>
+                                <td>{{item.title}}</td>
+                                <td>{{item.qty}} </td>
+                                <td>{% widthratio item.price 1  item.qty%} TL</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tbody class="checkout-details">
+                            <tr style="background-color:#A9A9A9;">
+                                <td ><strong>Toplam </strong></td>
+                                <td></td>
+                                <td><strong>{{cart_total_amount|floatformat:2}} TL</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a id="place-order-btn" class="boxed-btn">Sipariş Ver</a>
+                    <a href="{% url 'core:cart' %}" class="boxed-btn">Sepet'e Geri Dön</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end check out section -->
+
+<!-- checkout.html içindeki script bloğunu güncelle -->
+<script>
+    // JavaScript code for clearing the cart after clicking the "Sipariş Ver" button
+    document.getElementById("place-order-btn").addEventListener("click", function() {
+        // Perform any necessary actions here (e.g., sending data to the server)
+        
+        // AJAX request to clear the cart
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "{% url 'core:clear_cart' %}", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Show a success message
+                alert("Ödeme Başarıyla Tamamlandı");
+                
+                // Redirect after 3 seconds
+                setTimeout(function() {
+                    window.location.href = "{% url 'core:index' %}";
+                }, 1000);
+            }
+        };
+        xhr.send();
+    });
+</script>
+
+
+
+{% endblock content %}

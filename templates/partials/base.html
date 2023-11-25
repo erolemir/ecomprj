@@ -68,12 +68,12 @@
 									<div class="header-icons">
 										{% if user.id is not None %}
 										<li class="scroll-to-section"> <strong><a href="/user/">{{user.username}}<i class="fa-solid fa-user" ></i></a></strong></p></li>
+										<a class="mobile-hide search-bar-icon ml-2" href="#" style="font-size:15px"><i class="fas fa-search"></i></a>
+										<a class="shopping-cart ml-2 cart-items-count" href="{% url 'core:cart' %}" style="font-size:15px"><i class="fas fa-shopping-cart "></i>{{request.session.cart_data_obj|length}}</a>
 										<a class="ml-2" href="{% url 'user:logout' %}" style="font-size:18px"><i class="fa-solid fa-right-from-bracket"></i></a>
-										<a class="shopping-cart ml-2 cart-items-count" href="{% url 'core:cart' %}" style="font-size:18px"><i class="fas fa-shopping-cart"></i>{{request.session.cart_data_obj|length}}</a>
-										<a class="mobile-hide search-bar-icon ml-2" href="#" style="font-size:18px"><i class="fas fa-search"></i></a>
 										{% else %}
-										<a class="" href="{% url 'user:sign-in' %}">Giriş Yap<i class="fa-solid fa-user"></i></a>
-										<a class="" href="{% url 'user:sign-up' %}">Kayıt Ol<i class="fa-regular fa-user"></i></a>
+										<a class="" href="{% url 'user:sign-in' %}"><i class="fa-solid fa-user me-2"></i>Giriş Yap</a>
+										<a class="" href="{% url 'user:sign-up' %}"><i class="fa-regular fa-user me-2"></i>Kayıt Ol</a>
 										<a class="shopping-cart ml-2 cart-items-count" href="{% url 'core:cart' %}" style=""><i class="fas fa-shopping-cart"></i>{{request.session.cart_data_obj|length}}</a>
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
 										{% endif %}
