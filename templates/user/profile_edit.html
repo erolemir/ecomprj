@@ -1,0 +1,56 @@
+{% extends "partials/base.html" %}
+{% load static %}	
+{% block content %}
+<div class="container" style="margin-top:10%">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center">
+                        <img src="{{profile.image.url}}" alt="Admin" class="rounded-circle" width="150">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-12">
+                <div class="list-group" >
+                    <a href="{% url 'user:profile' %}" class="list-group-item list-group-item-action">Kullanıcı Bilgileri</a>
+                    <a href="{% url 'user:profile-update' %}" class="list-group-item list-group-item-action">Bilgileri Güncelle</a>
+                    <a href="{% url 'user:change_password' %}" class="list-group-item list-group-item-action">Şifreyi Değiştir</a>
+                    <a href="{% url 'user:comments' %}" class="list-group-item list-group-item-action">Yorumlarım</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Kullanıcı Bilgilerini Güncelle</h5>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                       <div class="mb-3">
+                            {{form.full_name}}
+                        </div>
+                        <div class="mb-3">
+                            {{form.bio}}
+                        </div>
+                        <div class="mb-3">
+                            {{form.phone}}
+                        </div>
+                        <div class="mb-3">
+                            {{form.image}}
+                        </div>
+                        
+                        <div class="form-group mt-4">
+                            <button class="btn btn-primary" type="submit">Güncelle</button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content%}

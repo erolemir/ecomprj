@@ -125,3 +125,40 @@ $(".update-product").on("click", function () {
         },
     });
 });
+
+$(document).on("submit","#contact-form-ajax",function(e){
+    e.preventDefault();
+    console.log("Form Gönderildi");
+    let full_name = $("#full_name").val();
+    let email = $("#email").val();
+    let subject = $("#subject").val();
+    let phone = $("#phone").val();
+    let message = $("#message").val();
+
+    console.log("Full Name: ", full_name);
+    console.log("Email: ", email);
+    console.log("Subject: ", subject);
+    console.log("Phone: ", phone);
+    console.log("Message: ", message);
+
+    $.ajax({
+        url: "/ajax-contact-form",
+        data: {
+            "full_name": full_name,
+            "email": email,
+            "subject": subject,
+            "phone": phone,
+            "message": message,
+        },
+        dataType: "json",
+        beforeSend : function(){
+           console.log("Form Gönderiliyor");
+        },
+        success: function(response){
+            console.log("Form Gönderildi");
+            $("#contact-form-ajax").hide();
+            $("#contact-form-ajax").html("<h3>Teşekkürler! Form başarıyla gönderildi.</h3>");
+            $("#contact-form-ajax").show();
+        },
+    });
+});

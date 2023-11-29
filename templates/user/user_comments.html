@@ -1,0 +1,64 @@
+{% extends "partials/base.html" %}
+{% load static %}	
+{% block content %}
+<div class="col-md-12" style="margin-top:6%">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="list-group" >
+                        <a href="{% url 'user:profile' %}" class="list-group-item list-group-item-action">Kullanıcı Bilgileri</a>
+                        <a href="{% url 'user:profile-update' %}" class="list-group-item list-group-item-action">Bilgileri Güncelle</a>
+                        <a href="{% url 'user:change_password' %}" class="list-group-item list-group-item-action">Şifreyi Değiştir</a>
+                        <a href="{% url 'user:comments' %}" class="list-group-item list-group-item-action">Yorumlarım</a>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <!-- İçerik buraya gelecek -->
+                    <div class="d-flex flex-column align-items-center text-center" style="margin-right:20%">
+                        <img src="" alt="" class="rounded-circle" width="150" >
+                        <div class="mt-3">
+                            <h4>{{user.username}} Kullanıcısının Yorumları</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Kullanıcı Adı</th>
+          <th>Ürün</th>
+          <th>Yorum</th>
+          <th>Yıldız</th>
+          <th>Tarih</th>
+          <th>İşlemler</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rs in comments %}
+          <tr>
+            <td>{{ user.username }}</td>
+            <td>
+            <a href= "/products/{{rs.product.id}}" class="text-dark">
+            <strong>{{ rs.product.title }}</strong>
+            </a>
+            </td>
+            
+            <td>{{ rs.review }}</td>
+            <td>{{ rs.rating }}</td>
+            <td>{{ rs.date }}</td>
+            <td><a href="/userauth/deletecomments/{{ rs.id }}" onclick="return confirm('Yorum Silinecek Emin Misiniz?')" class="btn btn-danger text-light">Sil</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  
+  </div>
+
+
+
+
+{% endblock content%}

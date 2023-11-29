@@ -10,6 +10,7 @@ from core.forms import ProductReviewForm
 from django.contrib import messages
 from django.shortcuts import render,HttpResponse,HttpResponseRedirect
 from django.template.loader import render_to_string
+from userauth.models import ContantUs
 
 def index(request):
     toprak = Category.objects.get(title="Toprakta Yetişen")
@@ -190,3 +191,30 @@ def checkout_view(request):
             
         return render(request,"core/checkout.html",{"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount})
     
+def contact(request):
+    return render(request,"core/contact.html")
+
+def ajax_contact_form(request):
+    full_name = request.GET['full_name']
+    email = request.GET['email']
+    phone = request.GET['phone']
+    message = request.GET['message']
+    subject = request.GET['subject']
+    
+    contact = ContantUs.objects.create(
+        full_name=full_name,
+        email = email,
+        phone = phone,
+        message = message,
+        subject = subject,
+        
+    )
+    data = {
+        "bool": True,
+        "message":"Mesaj başarıyla gönderildi",
+    }
+    return JsonResponse({"data":data})
+
+
+def hakkimizda(request):
+    return render(request,"core/hakkimizda.html")

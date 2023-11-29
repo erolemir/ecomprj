@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     
     # Custom apps
     'core',
-    'user.apps.UserConfig',
+    'userauth',
 ]
 
 MIDDLEWARE = [

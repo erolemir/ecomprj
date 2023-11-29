@@ -59,15 +59,15 @@
 								<li class="current-list-item"><a href="{% url 'core:index' %}">Ana Sayfa</a>
 									
 								</li>
-								<li><a href="about.html">Hakkımızda</a></li>
-								<li><a href="contact.html">İletişim</a></li>
+								<li><a href="{% url 'core:hakkimizda' %}">Hakkımızda</a></li>
+								<li><a href="{% url 'core:contact' %}">İletişim</a></li>
 								<li><a href="{% url 'core:shop' %}">Mağaza</a>
 								<li><a href="{% url 'core:vendor-list' %}">Satıcılar</a> 
 								</li>
 								<li>
 									<div class="header-icons">
 										{% if user.id is not None %}
-										<li class="scroll-to-section"> <strong><a href="/user/">{{user.username}}<i class="fa-solid fa-user" ></i></a></strong></p></li>
+										<li class="scroll-to-section"> <strong><a href="{% url 'user:profile' %}">{{user.username}}<i class="fa-solid fa-user" ></i></a></strong></p></li>
 										<a class="mobile-hide search-bar-icon ml-2" href="#" style="font-size:15px"><i class="fas fa-search"></i></a>
 										<a class="shopping-cart ml-2 cart-items-count" href="{% url 'core:cart' %}" style="font-size:15px"><i class="fas fa-shopping-cart "></i>{{request.session.cart_data_obj|length}}</a>
 										<a class="ml-2" href="{% url 'user:logout' %}" style="font-size:18px"><i class="fa-solid fa-right-from-bracket"></i></a>
